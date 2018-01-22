@@ -1,16 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var dbSettings = require('./dev_db_settings')
 
-var knex = require('knex')({
-  dialect: 'mysql',
-  connection: {
-    host:'192.168.33.10',
-    user:'dev_admin',
-    password:'dies9029',
-    database:'sasami',
-    port:'3306'        
-  }
-});
+var knex = dbSettings.devDbInfo;
 
 var Bookshelf = require('bookshelf')(knex);
 
