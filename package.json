@@ -19,6 +19,6 @@
     "morgan": "~1.9.0",
     "mysql": "^2.15.0",
     "serve-favicon": "~2.4.5",
-    "cluster":"^0.7.7"
+    "cluster": "^0.7.7"
   }
 }
