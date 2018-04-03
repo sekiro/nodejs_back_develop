@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var validator = require('express-validator');
+var RedisStore = require('connect-redis')(session);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -27,10 +28,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(validator());
 
 var session_opt = {
+  store: new RedisStore({
+    host: '192.168.33.10',
+    port: 6379,
+    db: 0
+  }),
   secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 60 * 60 * 1000 }
+  resave: false
+//  saveUninitialized: false,
+//  cookie: { maxAge: 60 * 60 * 1000 }
 };
 app.use(session(session_opt));
 
